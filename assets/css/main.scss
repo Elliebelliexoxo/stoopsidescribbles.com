@@ -1,4 +1,5 @@
-:-moz-ui-invalid---
+---
+---
 /* Base styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -57,7 +58,7 @@ nav a:hover {
 }
 
 .post-meta {
-    color: #666;
+    color: #666;\
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
@@ -73,4 +74,4 @@ footer {
     border-top: 1px solid #eee;
     color: #666;
     font-size: 0.9rem;
-} 
+}
