@@ -1,0 +1,25 @@
+---
+layout: default
+title: All Posts
+permalink: /all-posts/
+---
+
+<h1>All Posts</h1>
+
+<div class="posts">
+    {% for post in site.posts %}
+    <article class="post-preview">
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <div class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+            {% if post.author %}
+            <span class="author">by {{ post.author }}</span>
+            {% endif %}
+        </div>
+        <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+        <a href="{{ post.url | relative_url }}">Read more →</a>
+    </article>
+    {% endfor %}
+</div> 

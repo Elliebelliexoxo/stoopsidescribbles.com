@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "10 Days in London"
+title: "Uh oh, there's a new cockney in town"
 date: 2024-01-15
 author: "Ellie Goetz"
 ---

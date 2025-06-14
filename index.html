@@ -3,19 +3,7 @@ layout: default
 title: Home
 ---
 
-<h1>Latest Posts</h1>
+<h1>Welcome to Stoop Side Scribbles!</h1>
 
-<div class="posts">
-    {% for post in site.posts %}
-    <article class="post-preview">
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: "%B %-d, %Y" }}
-            </time>
-        </div>
-        <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-        <a href="{{ post.url | relative_url }}">Read more →</a>
-    </article>
-    {% endfor %}
-</div> 
+<p>This is your personal space where you'll find thoughts, experiences, and stories.</p>
+<p>Explore the <a href="{{ '/all-posts/' | relative_url }}">All Posts</a> page to read more.</p> 
