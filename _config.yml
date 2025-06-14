@@ -1,7 +1,8 @@
+# Site settings
 title: Stoop Side Scribbles
 description: A personal blog about life, thoughts, and experiences
-baseurl: ""
-url: "https://stoopsidescribbles.com"
+baseurl: "/stoopsidescribbles.com" # the subpath of your site, e.g. /blog
+url: "https://stoopsidescribbles.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
