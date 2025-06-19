@@ -1,0 +1,9 @@
+name = "stoopsidescribbles"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "hugo --minify"
+publish = "public"
+
+[build.environment]
+HUGO_VERSION = "0.121.0" 

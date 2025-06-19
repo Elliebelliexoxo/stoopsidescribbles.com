@@ -1,0 +1,31 @@
+baseURL = "https://stoopsidescribbles.com/"
+languageCode = "en-us"
+title = "Stoop Side Scribbles"
+description = "A personal blog about life, thoughts, and experiences"
+author = "Ellie Goetz"
+
+[params]
+  description = "A personal blog about life, thoughts, and experiences"
+  author = "Ellie Goetz"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 20
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+
+[build]
+  writeStats = true 

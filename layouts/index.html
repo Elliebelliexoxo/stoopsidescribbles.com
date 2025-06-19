@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="container">
+    <section class="hero">
+        <h1 class="hero-title">{{ .Site.Title }}</h1>
+        <p class="hero-description">{{ .Site.Params.description }}</p>
+    </section>
+
+    <section class="posts">
+        <h2 class="section-title">Recent Posts</h2>
+        <div class="posts-grid">
+            {{ range first 6 (where .Site.RegularPages "Type" "posts") }}
+            <article class="post-card">
+                <div class="post-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                    {{ if .Params.tags }}
+                    <div class="post-tags">
+                        {{ range .Params.tags }}
+                        <span class="tag">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                <h3 class="post-title">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </h3>
+                <p class="post-excerpt">{{ .Description }}</p>
+                <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
+            </article>
+            {{ end }}
+        </div>
+        
+        {{ if gt (len (where .Site.RegularPages "Type" "posts")) 6 }}
+        <div class="posts-more">
+            <a href="/posts/" class="btn">View all posts</a>
+        </div>
+        {{ end }}
+    </section>
+</div>
+{{ end }} 
