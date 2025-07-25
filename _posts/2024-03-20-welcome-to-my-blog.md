@@ -1,9 +1,18 @@
 ---
-layout: post
-title: "Welcome to My Blog"
-date: 2024-03-20
+layout: default
+title: Home
 ---
 
-Welcome to Stoopside Scribbles! Over a year ago, I began this blog as a documentation of my opinons, concerns, personal expereinces, and appreciations. Having logged many hours of typing these posts on the stoop of my old college apartment, I have dedicated my blog to the place where many of my posts originated. 
-Thanks for reading!
+<h1>Welcome to Stoop Side Scribbles!</h1>
+<p>This is your personal space where you'll find thoughts, experiences, and stories.</p>
+
+<h2>All Posts</h2>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <span style="color: #888;">({{ post.date | date: "%B %d, %Y" }})</span>
+    </li>
+  {% endfor %}
+</ul>
 
