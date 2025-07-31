@@ -3,12 +3,37 @@ title: Stoop Side Scribbles
 description: A personal blog about life, thoughts, and experiences
 baseurl: "" 
 url: "https://stoopsidescribbles.com" # the base hostname & protocol for your site
+theme: jekyll-theme-yat
 
-# Build settings
-markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
+
+yat:
+  theme_color: "light"
+  header_text: "Stoop Side Scribbles"
+  #avatar: "/assets/images/avatar.png" # Optional
+  banner: true
+  #image: /assets/images/banner.jpg    # Optional banner image
+  show_excerpts: true
+  post_navigation: true
+  date_format: "%B %d, %Y"
+  head_extra: |
+    <link rel="stylesheet" href="/assets/css/main.scss">
+
+# Navigation bar
+nav:
+  - name: "Home"
+    link: "/"
+  - name: "About"
+    link: "/about/"
+  - name: "All Posts"
+    link: "/all-posts/"
+
+markdown: kramdown
+
 
 # Collections
 collections:
