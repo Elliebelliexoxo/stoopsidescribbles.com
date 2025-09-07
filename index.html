@@ -73,16 +73,119 @@
                 font-size: 18px;
             }
         }
+        /* Under Construction Overlay */
+        .under-construction {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .under-construction-message {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .under-construction h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 12px;
+            color: #000;
+        }
+        
+        .under-construction p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        body.blurred > *:not(.under-construction) {
+            filter: blur(5px);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Under Construction Overlay (toggle with UNDER_CONSTRUCTION flag) -->
+    <div id="construction-overlay" class="under-construction" style="display: none;">
+        <div class="under-construction-message">
+            <h2>Under Construction</h2>
+            <p>Coming soon.</p>
+        </div>
+    </div>
+    
     <h1 id="site-title">Stoop Side Scribbles</h1>
     
     <div id="content">
         <div class="loading">Loading...</div>
     </div>
+    
+    <!-- Newsletter Signup -->
+    <div id="newsletter" style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #e5e5e5;">
+        <form
+            action="https://buttondown.email/api/emails/embed-subscribe/stoopsidescribbles"
+            method="post"
+            target="popupwindow"
+            onsubmit="window.open('https://buttondown.email/stoopsidescribbles', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"
+            style="margin: 0;"
+        >
+            <p style="margin-bottom: 12px; color: #666; font-size: 14px;">
+                Subscribe to get new posts by email:
+            </p>
+            <div style="display: flex; gap: 8px; max-width: 400px;">
+                <input
+                    type="email"
+                    name="email"
+                    id="bd-email"
+                    placeholder="your@email.com"
+                    required
+                    style="
+                        flex: 1;
+                        padding: 6px 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        font-family: inherit;
+                    "
+                />
+                <input type="hidden" value="1" name="embed" />
+                <input
+                    type="submit"
+                    value="Subscribe"
+                    style="
+                        background: none;
+                        border: 1px solid #0066cc;
+                        color: #0066cc;
+                        padding: 6px 16px;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        cursor: pointer;
+                        font-family: inherit;
+                    "
+                    onmouseover="this.style.background='#0066cc'; this.style.color='#fff';"
+                    onmouseout="this.style.background='none'; this.style.color='#0066cc';"
+                />
+            </div>
+        </form>
+    </div>
 
     <script>
+        // UNDER CONSTRUCTION FLAG - Set to true to enable blur overlay
+        const UNDER_CONSTRUCTION = true; // Change to true to enable
+        
+        // Check and apply construction mode
+        if (UNDER_CONSTRUCTION) {
+            document.getElementById('construction-overlay').style.display = 'flex';
+            document.body.classList.add('blurred');
+        }
+        
         // CMS API URL
         const CMS_API_URL = 'https://stoopside-scribbles-cms.vercel.app/api/content';
         
