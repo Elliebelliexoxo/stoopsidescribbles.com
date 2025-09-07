@@ -5,21 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stoop Side Scribbles</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
-            line-height: 1.6;
-            color: #333;
         }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+        
         h1 {
             color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+        }
+        
+        .posts {
+            margin-top: 40px;
+        }
+        
+        .post {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .post h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .post-date {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        .post-content {
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        
+        .no-posts {
+            text-align: center;
+            color: #999;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Stoop Side Scribbles</h1>
-    <p>Welcome to Stoop Side Scribbles.</p>
+    <div class="container">
+        <header>
+            <h1 id="site-title">Stoop Side Scribbles</h1>
+            <p id="site-subtitle" class="subtitle">Welcome to Stoop Side Scribbles.</p>
+        </header>
+        
+        <div id="content">
+            <div class="loading">Loading content...</div>
+        </div>
+    </div>
+
+    <script>
+        // CMS API URL - Update this when deploying
+        const CMS_API_URL = 'https://stoopside-scribbles-cms.vercel.app/api/content';
+        
+        async function loadContent() {
+            const contentDiv = document.getElementById('content');
+            
+            try {
+                const response = await fetch(CMS_API_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load content');
+                }
+                
+                const data = await response.json();
+                
+                // Update site title and subtitle
+                if (data.title) {
+                    document.getElementById('site-title').textContent = data.title;
+                    document.title = data.title;
+                }
+                if (data.subtitle) {
+                    document.getElementById('site-subtitle').textContent = data.subtitle;
+                }
+                
+                // Display posts
+                if (data.posts && data.posts.length > 0) {
+                    const publishedPosts = data.posts.filter(post => post.published);
+                    
+                    if (publishedPosts.length > 0) {
+                        const postsHTML = publishedPosts
+                            .sort((a, b) => new Date(b.date) - new Date(a.date))
+                            .map(post => `
+                                <article class="post">
+                                    <h2>${escapeHtml(post.title)}</h2>
+                                    <div class="post-date">${formatDate(post.date)}</div>
+                                    <div class="post-content">${escapeHtml(post.content)}</div>
+                                </article>
+                            `).join('');
+                        
+                        contentDiv.innerHTML = `<div class="posts">${postsHTML}</div>`;
+                    } else {
+                        contentDiv.innerHTML = '<div class="no-posts">No published posts yet. Check back soon!</div>';
+                    }
+                } else {
+                    contentDiv.innerHTML = '<div class="no-posts">No content available yet. Check back soon!</div>';
+                }
+            } catch (error) {
+                console.error('Error loading content:', error);
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        Unable to load content at this time. Please try again later.
+                    </div>
+                `;
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+        
+        // Load content when page loads
+        loadContent();
+    </script>
 </body>
 </html>
