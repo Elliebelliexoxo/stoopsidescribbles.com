@@ -22,10 +22,11 @@
             margin: 0 auto;
         }
         
-        h1 {
-            font-size: 20px;
-            font-weight: normal;
+        .header-img {
+            width: 300px;
+            height: auto;
             margin-bottom: 30px;
+            display: block;
         }
         
         .posts {
@@ -69,8 +70,9 @@
                 padding: 30px 20px;
             }
             
-            h1 {
-                font-size: 18px;
+            .header-img {
+                width: 250px;
+                margin-bottom: 20px;
             }
         }
         /* Under Construction Overlay */
@@ -121,7 +123,7 @@
         </div>
     </div>
     
-    <h1 id="site-title">Stoop Side Scribbles</h1>
+    <img src="header.png" alt="Stoopside Scribbles - From porch to page" class="header-img" id="site-header">
     
     <div id="content">
         <div class="loading">Loading...</div>
@@ -178,7 +180,7 @@
 
     <script>
         // UNDER CONSTRUCTION FLAG - Set to true to enable blur overlay
-        const UNDER_CONSTRUCTION = true; // Change to true to enable
+        const UNDER_CONSTRUCTION = false; // Change to true to enable
         
         // Check and apply construction mode
         if (UNDER_CONSTRUCTION) {
@@ -201,9 +203,8 @@
                 
                 const data = await response.json();
                 
-                // Update site title if provided
+                // Update site title if provided (keep document title updated)
                 if (data.title) {
-                    document.getElementById('site-title').textContent = data.title;
                     document.title = data.title;
                 }
                 
