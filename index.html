@@ -12,98 +12,71 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", sans-serif;
-            font-size: 13px;
-            line-height: 1.5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
             color: #000;
             background: #fff;
-            padding: 40px 60px;
-            max-width: 700px;
+            padding: 40px 20px;
+            max-width: 600px;
             margin: 0 auto;
         }
         
-        header {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #d4d4d4;
-        }
-        
         h1 {
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 13px;
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 30px;
         }
         
         .posts {
-            margin: 0;
+            list-style: none;
         }
         
         .post {
-            margin-bottom: 40px;
+            margin-bottom: 8px;
         }
         
-        .post h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 4px;
-            letter-spacing: -0.3px;
+        .post a {
+            color: #000;
+            text-decoration: none;
         }
         
-        .post-date {
-            color: #999;
-            font-size: 11px;
-            margin-bottom: 12px;
-            font-weight: 400;
+        .post a:hover {
+            text-decoration: underline;
         }
         
-        .post-content {
-            font-size: 13px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            color: #333;
+        .post a:visited {
+            color: #606060;
         }
         
         .loading {
-            color: #999;
+            color: #666;
             font-style: italic;
-            padding: 20px 0;
         }
         
         .no-posts {
-            color: #999;
+            color: #666;
             font-style: italic;
-            padding: 40px 0;
         }
         
         .error {
             color: #c33;
-            padding: 20px 0;
         }
         
-        /* Clean minimal separator between posts */
-        .post + .post {
-            padding-top: 40px;
-            border-top: 1px solid #e5e5e5;
-        }
-        
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             body {
+                font-size: 15px;
                 padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1 id="site-title">Stoop Side Scribbles</h1>
-        <p id="site-subtitle" class="subtitle">Welcome to Stoop Side Scribbles.</p>
-    </header>
+    <h1 id="site-title">Stoop Side Scribbles</h1>
     
     <div id="content">
         <div class="loading">Loading...</div>
@@ -125,31 +98,31 @@
                 
                 const data = await response.json();
                 
-                // Update site title and subtitle
+                // Update site title if provided
                 if (data.title) {
                     document.getElementById('site-title').textContent = data.title;
                     document.title = data.title;
                 }
-                if (data.subtitle) {
-                    document.getElementById('site-subtitle').textContent = data.subtitle;
-                }
                 
-                // Display posts
+                // Display posts as simple list
                 if (data.posts && data.posts.length > 0) {
                     const publishedPosts = data.posts.filter(post => post.published);
                     
                     if (publishedPosts.length > 0) {
                         const postsHTML = publishedPosts
                             .sort((a, b) => new Date(b.date) - new Date(a.date))
-                            .map(post => `
-                                <article class="post">
-                                    <h2>${escapeHtml(post.title)}</h2>
-                                    <div class="post-date">${formatDate(post.date)}</div>
-                                    <div class="post-content">${escapeHtml(post.content)}</div>
-                                </article>
+                            .map((post, index) => `
+                                <li class="post">
+                                    <a href="#post-${index}" onclick="showPost(${index}); return false;">
+                                        ${escapeHtml(post.title)}
+                                    </a>
+                                </li>
                             `).join('');
                         
-                        contentDiv.innerHTML = `<div class="posts">${postsHTML}</div>`;
+                        contentDiv.innerHTML = `<ul class="posts">${postsHTML}</ul>`;
+                        
+                        // Store posts for later viewing
+                        window.posts = publishedPosts;
                     } else {
                         contentDiv.innerHTML = '<div class="no-posts">No posts yet.</div>';
                     }
@@ -158,12 +131,31 @@
                 }
             } catch (error) {
                 console.error('Error loading content:', error);
-                contentDiv.innerHTML = `
-                    <div class="error">
-                        Unable to load content.
-                    </div>
-                `;
+                contentDiv.innerHTML = '<div class="error">Unable to load content.</div>';
             }
+        }
+        
+        function showPost(index) {
+            const post = window.posts[index];
+            if (!post) return;
+            
+            // Create a simple post view
+            document.getElementById('content').innerHTML = `
+                <div style="margin-bottom: 30px;">
+                    <a href="#" onclick="loadContent(); return false;" style="color: #666; text-decoration: none;">← Back</a>
+                </div>
+                <article>
+                    <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">
+                        ${escapeHtml(post.title)}
+                    </h2>
+                    <div style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                        ${formatDate(post.date)}
+                    </div>
+                    <div style="white-space: pre-wrap; line-height: 1.8;">
+                        ${escapeHtml(post.content)}
+                    </div>
+                </article>
+            `;
         }
         
         function escapeHtml(text) {
