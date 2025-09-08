@@ -70,6 +70,40 @@
             margin-right: 4px;
         }
         
+        .all-posts-header {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            color: #000;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .all-posts-header:hover {
+            text-decoration: underline;
+        }
+        
+        .expand-arrow {
+            font-size: 12px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        
+        .expand-arrow.expanded {
+            transform: rotate(90deg);
+        }
+        
+        .all-posts-list {
+            display: none;
+        }
+        
+        .all-posts-list.expanded {
+            display: block;
+        }
+        
         @media (max-width: 640px) {
             body {
                 font-size: 15px;
@@ -219,37 +253,75 @@
                     const publishedPosts = data.posts.filter(post => post.published);
                     
                     if (publishedPosts.length > 0) {
-                        // Sort posts: pinned first, then by date
+                        // Sort all posts by date first
                         const sortedPosts = publishedPosts
-                            .sort((a, b) => {
-                                // If both are pinned or both are not pinned, sort by date
-                                if (a.is_pinned === b.is_pinned) {
-                                    return new Date(b.date) - new Date(a.date);
-                                }
-                                // Pinned posts come first
-                                return b.is_pinned ? 1 : -1;
-                            });
+                            .sort((a, b) => new Date(b.date) - new Date(a.date));
                         
-                        const postsHTML = sortedPosts
-                            .map((post, index) => {
-                                // Find the first non-pinned post to mark as [new]
-                                const firstNonPinned = sortedPosts.findIndex(p => !p.is_pinned);
-                                const showNewTag = (firstNonPinned === -1 && index === 0) || 
-                                                  (firstNonPinned === index);
-                                
+                        // Separate posts into categories
+                        const pinnedPosts = sortedPosts.filter(post => post.is_pinned);
+                        const nonPinnedPosts = sortedPosts.filter(post => !post.is_pinned);
+                        const newestPost = nonPinnedPosts[0];
+                        const remainingPosts = nonPinnedPosts.slice(1);
+                        
+                        // Build HTML for featured posts (pinned + newest)
+                        let featuredHTML = '';
+                        
+                        // Add pinned posts
+                        pinnedPosts.forEach((post, index) => {
+                            const postIndex = sortedPosts.indexOf(post);
+                            featuredHTML += `
+                                <li class="post">
+                                    <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                                        <span class="pin-icon">📌</span>${escapeHtml(post.title)}
+                                    </a>
+                                </li>
+                            `;
+                        });
+                        
+                        // Add newest non-pinned post with [new] tag
+                        if (newestPost) {
+                            const postIndex = sortedPosts.indexOf(newestPost);
+                            featuredHTML += `
+                                <li class="post">
+                                    <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                                        ${escapeHtml(newestPost.title)} <span style="color: #922121; font-size: 12px;">[new]</span>
+                                    </a>
+                                </li>
+                            `;
+                        }
+                        
+                        // Build HTML for remaining posts
+                        let allPostsHTML = '';
+                        if (remainingPosts.length > 0) {
+                            const remainingHTML = remainingPosts.map(post => {
+                                const postIndex = sortedPosts.indexOf(post);
                                 return `
                                     <li class="post">
-                                        <a href="#post-${index}" onclick="showPost(${index}); return false;">
-                                            ${post.is_pinned ? '<span class="pin-icon">📌</span>' : ''}${escapeHtml(post.title)}${showNewTag ? ' <span style="color: #922121; font-size: 12px;">[new]</span>' : ''}
+                                        <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                                            ${escapeHtml(post.title)}
                                         </a>
                                     </li>
                                 `;
                             }).join('');
+                            
+                            allPostsHTML = `
+                                <div class="all-posts-header" onclick="toggleAllPosts()">
+                                    <span class="expand-arrow">▶</span>
+                                    <span>All Posts (${remainingPosts.length})</span>
+                                </div>
+                                <ul class="posts all-posts-list" id="all-posts-list">
+                                    ${remainingHTML}
+                                </ul>
+                            `;
+                        }
                         
-                        contentDiv.innerHTML = `<ul class="posts">${postsHTML}</ul>`;
+                        contentDiv.innerHTML = `
+                            <ul class="posts">${featuredHTML}</ul>
+                            ${allPostsHTML}
+                        `;
                         
                         // Store posts for later viewing
-                        window.posts = publishedPosts;
+                        window.posts = sortedPosts;
                     } else {
                         contentDiv.innerHTML = '<div class="no-posts">No posts yet.</div>';
                     }
@@ -294,6 +366,16 @@
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+        
+        function toggleAllPosts() {
+            const list = document.getElementById('all-posts-list');
+            const arrow = document.querySelector('.expand-arrow');
+            
+            if (list && arrow) {
+                list.classList.toggle('expanded');
+                arrow.classList.toggle('expanded');
+            }
         }
         
         // Load content when page loads
