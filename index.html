@@ -213,12 +213,14 @@
                     const publishedPosts = data.posts.filter(post => post.published);
                     
                     if (publishedPosts.length > 0) {
-                        const postsHTML = publishedPosts
-                            .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        const sortedPosts = publishedPosts
+                            .sort((a, b) => new Date(b.date) - new Date(a.date));
+                        
+                        const postsHTML = sortedPosts
                             .map((post, index) => `
                                 <li class="post">
                                     <a href="#post-${index}" onclick="showPost(${index}); return false;">
-                                        ${escapeHtml(post.title)}
+                                        ${escapeHtml(post.title)}${index === 0 ? ' <span style="color: #922121; font-size: 12px;">[new]</span>' : ''}
                                     </a>
                                 </li>
                             `).join('');
