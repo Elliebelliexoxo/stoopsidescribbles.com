@@ -373,7 +373,7 @@
                         ${formatDate(post.date)}
                     </div>
                     <div style="white-space: pre-wrap; line-height: 1.8;">
-                        ${escapeHtml(post.content)}
+                        ${escapeHtml(post.content.trim())}
                     </div>
                 </article>
             `;
