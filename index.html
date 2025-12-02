@@ -51,6 +51,17 @@
             margin-bottom: 30px;
             display: block;
         }
+                /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
 
 .posts {
             list-style-type: none; 
