@@ -61,14 +61,15 @@
 
 </div>
 
- .posts {
-    list-style-type: none; /* This removes the bullets/black dots */
-    list-style: none;
-}
-        
-        .post {
-            margin-bottom: 8px;
-        }
+.posts {
+            list-style-type: none; 
+            padding: 0; /* Ensures no padding from the <ul> tag pushes the list in */
+        }
+        
+        .post {
+            list-style-type: none; /* <-- This is the definitive fix for the <li> */
+            margin-bottom: 8px;
+        }
         
         .post a {
             color: #000;
