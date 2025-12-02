@@ -304,17 +304,18 @@
                         // Build HTML for featured posts (pinned + newest)
                         let featuredHTML = '';
                         
-                        // Add pinned posts
-                        pinnedPosts.forEach((post, index) => {
-                            const postIndex = sortedPosts.indexOf(post);
-                            featuredHTML += `
-                                <li class="post">
-                                    <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
-                                        <span class="pin-icon">📌</span>${escapeHtml(post.title)}
-                                    </a>
-                                </li>
-                            `;
-                        });
+// Add pinned posts
+pinnedPosts.forEach((post, index) => {
+    const postIndex = sortedPosts.indexOf(post);
+    featuredHTML += `
+        <li class="post">
+            <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                <span class="pin-icon triangle"></span>${escapeHtml(post.title)}
+            </a>
+        </li>
+    `;
+});
+
                         
                         // Add newest non-pinned post with [new] tag
                         if (newestPost) {
