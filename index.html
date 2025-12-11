@@ -168,42 +168,6 @@
                 margin-bottom: 20px;
             }
         }
-        /* Under Construction Overlay */
-        .under-construction {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-        
-        .under-construction-message {
-            text-align: center;
-            padding: 40px;
-        }
-        
-        .under-construction h2 {
-            font-size: 24px;
-            font-weight: normal;
-            margin-bottom: 12px;
-            color: #000;
-        }
-        
-        .under-construction p {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        body.blurred > *:not(.under-construction) {
-            filter: blur(5px);
-            pointer-events: none;
  
     </style>
     </div>
@@ -228,15 +192,7 @@
 </script>
 </head>
 <body>
-    <!-- Under Construction Overlay (toggle with UNDER_CONSTRUCTION flag) -->
-    <div id="construction-overlay" class="under-construction" style="display: none;">
-        <div class="under-construction-message">
-            <h2>Under Construction</h2>
-            <p>Coming soon.</p>
-        </div>
-    </div>
-    
-    <img src="header.png" alt="Stoopside Scribbles - From porch to page" class="header-img" id="site-header">
+<img src="header.png" alt="Stoopside Scribbles - From porch to page" class="header-img" id="site-header">
     <!-- Newsletter Signup -->
     <div id="newsletter" style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #e5e5e5;">
         <form
@@ -291,16 +247,7 @@
     </div>
 
     <script>
-        // UNDER CONSTRUCTION FLAG - Set to true to enable blur overlay
-        const UNDER_CONSTRUCTION = false; // Change to true to enable
-        
-        // Check and apply construction mode
-        if (UNDER_CONSTRUCTION) {
-            document.getElementById('construction-overlay').style.display = 'flex';
-            document.body.classList.add('blurred');
-        }
-        
-        // Supabase Configuration
+// Supabase Configuration
         const SUPABASE_URL = 'https://bdsevogffxursfhzencw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkc2V2b2dmZnh1cnNmaHplbmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcyNzY1ODksImV4cCI6MjA3Mjg1MjU4OX0.M2knJ1wze9x3obgyWOQnBcwGOcIe7nqhnKJlSvFNFiw';
 
