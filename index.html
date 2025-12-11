@@ -144,6 +144,18 @@
         .all-posts-list.expanded {
             display: block;
         }
+
+        /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
         
         @media (max-width: 640px) {
             body {
@@ -288,29 +300,32 @@
             document.body.classList.add('blurred');
         }
         
-        // CMS API URL
-        const CMS_API_URL = 'https://stoopside-scribbles-cms.vercel.app/api/content';
-        
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://bdsevogffxursfhzencw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkc2V2b2dmZnh1cnNmaHplbmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcyNzY1ODksImV4cCI6MjA3Mjg1MjU4OX0.M2knJ1wze9x3obgyWOQnBcwGOcIe7nqhnKJlSvFNFiw';
+
         async function loadContent() {
             const contentDiv = document.getElementById('content');
-            
+
             try {
-                const response = await fetch(CMS_API_URL);
+                // Fetch posts directly from Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&published=eq.true&order=is_pinned.desc,date.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
                 
                 if (!response.ok) {
                     throw new Error('Failed to load content');
                 }
                 
-                const data = await response.json();
-                
-                // Update site title if provided (keep document title updated)
-                if (data.title) {
-                    document.title = data.title;
-                }
-                
+                const posts = await response.json();
+
                 // Display posts as simple list
-                if (data.posts && data.posts.length > 0) {
-                    const publishedPosts = data.posts.filter(post => post.published);
+                if (posts && posts.length > 0) {
+                    // Posts are already filtered by published=true in the query
+                    const publishedPosts = posts;
                     
                     if (publishedPosts.length > 0) {
                         // Sort all posts by date first
