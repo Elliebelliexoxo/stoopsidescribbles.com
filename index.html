@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stoopside Scribbles</title>
     
-<!-- Favicon - Yellow Triangle -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='12,2 22,22 2,22' fill='%23FFD700'/></svg>">
+<!-- Favicon - Blue Swirl -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 C 7 2 3 6 3 11 C 3 13 4 14.5 5.5 15.5 C 5.5 15.5 8 12 12 12 C 16 12 18.5 15.5 18.5 15.5 C 20 14.5 21 13 21 11 C 21 6 17 2 12 2 M 12 12 C 10 12 8.5 13.5 8.5 15.5 C 8.5 17 9.5 18 10.5 18.5 C 10.5 18.5 11 16 12 16 C 13 16 13.5 18.5 13.5 18.5 C 14.5 18 15.5 17 15.5 15.5 C 15.5 13.5 14 12 12 12' fill='%230066cc' stroke='%230066cc' stroke-width='0.5'/></svg>">
 
     
     <!-- SEO Meta Tags -->
@@ -101,13 +101,12 @@
         
   .pin-icon.triangle {
     display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 14px solid yellow; /* Triangle color */
-    margin-right: 6px; /* Space between triangle and post title */
+    margin-right: 6px;
     vertical-align: middle;
+}
+
+.pin-icon.triangle::before {
+    content: '📌';
 }
 
         
