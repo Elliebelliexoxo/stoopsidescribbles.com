@@ -264,7 +264,7 @@
             action="https://buttondown.email/api/emails/embed-subscribe/elliebelliexoxo"
             method="post"
             target="popupwindow"
-            onsubmit="window.open('https://buttondown.email/elliebelliexoxo', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"
+            onsubmit="mixpanel.track('Newsletter Signup', { 'Email': document.getElementById('bd-email').value }); window.open('https://buttondown.email/elliebelliexoxo', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"
             style="margin: 0;"
         >
             <p style="margin-bottom: 12px; color: #666; font-size: 14px;">
