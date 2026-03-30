@@ -187,6 +187,73 @@
     autocapture: true,
     record_sessions_percent: 100,
   })
+
+  // --- Stoopside Analytics ---
+  const stoopside = {
+    articlesThisSession: 0,
+    currentArticle: null,
+    readStart: null,
+    maxScrollPercent: 0,
+    scrollHandler: null,
+
+    openArticle(post, index) {
+      // Close previous article if open
+      this.closeArticle();
+
+      this.articlesThisSession++;
+      this.currentArticle = post;
+      this.readStart = Date.now();
+      this.maxScrollPercent = 0;
+
+      // Update session-level property
+      mixpanel.register({ 'Articles This Session': this.articlesThisSession });
+
+      mixpanel.track('Article Opened', {
+        'Article Title': post.title,
+        'Article Date': post.date,
+        'Is Pinned': !!post.is_pinned,
+        'Article Index': index,
+        'Articles This Session': this.articlesThisSession,
+      });
+
+      // Track scroll depth
+      this.scrollHandler = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight > 0) {
+          const pct = Math.round((scrollTop / docHeight) * 100);
+          if (pct > this.maxScrollPercent) this.maxScrollPercent = pct;
+        }
+      };
+      window.addEventListener('scroll', this.scrollHandler);
+    },
+
+    closeArticle() {
+      if (!this.currentArticle || !this.readStart) return;
+
+      const secondsSpent = Math.round((Date.now() - this.readStart) / 1000);
+
+      mixpanel.track('Article Read', {
+        'Article Title': this.currentArticle.title,
+        'Article Date': this.currentArticle.date,
+        'Seconds Spent': secondsSpent,
+        'Max Scroll Percent': this.maxScrollPercent,
+        'Articles This Session': this.articlesThisSession,
+      });
+
+      if (this.scrollHandler) {
+        window.removeEventListener('scroll', this.scrollHandler);
+        this.scrollHandler = null;
+      }
+
+      this.currentArticle = null;
+      this.readStart = null;
+      this.maxScrollPercent = 0;
+    },
+  };
+
+  // Fire read event if they close the tab mid-article
+  window.addEventListener('beforeunload', () => stoopside.closeArticle());
 </script>
 </head>
 <body>
@@ -358,11 +425,13 @@ pinnedPosts.forEach((post, index) => {
         function showPost(index) {
             const post = window.posts[index];
             if (!post) return;
-            
+
+            stoopside.openArticle(post, index);
+
             // Create a simple post view
             document.getElementById('content').innerHTML = `
                 <div style="margin-bottom: 30px;">
-                    <a href="#" onclick="loadContent(); return false;" style="color: #666; text-decoration: none;">← Back</a>
+                    <a href="#" onclick="stoopside.closeArticle(); loadContent(); return false;" style="color: #666; text-decoration: none;">← Back</a>
                 </div>
                 <article>
                     <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">
