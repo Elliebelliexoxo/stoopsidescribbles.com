@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growing Pains — Stoopside Scribbles</title>
+
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/512/16077/16077310.png" type="image/png">
+
+    <meta name="description" content="Now, with March in full bloom, our bodies are shifting, defrosting from our winter forms. We have to adjust to the brightening and unfamiliar light of day…">
+    <meta name="author" content="Stoopside Scribbles">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stoopsidescribbles.com/posts/growing-pains/">
+    <meta property="og:title" content="Growing Pains">
+    <meta property="og:description" content="Now, with March in full bloom, our bodies are shifting, defrosting from our winter forms. We have to adjust to the brightening and unfamiliar light of day…">
+    <meta property="og:image" content="https://stoopsidescribbles.com/header.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stoopsidescribbles.com/posts/growing-pains/">
+    <meta property="twitter:title" content="Growing Pains">
+    <meta property="twitter:description" content="Now, with March in full bloom, our bodies are shifting, defrosting from our winter forms. We have to adjust to the brightening and unfamiliar light of day…">
+    <meta property="twitter:image" content="https://stoopsidescribbles.com/header.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header-img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+            display: block;
+        }
+                /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+
+.posts {
+            list-style-type: none; 
+            padding: 0;
+        }
+        
+        .post {
+            list-style-type: none;
+            margin-bottom: 8px;
+        }
+        .post a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .post a:hover {
+            text-decoration: underline;
+        }
+        
+        .post a:visited {
+            color: #606060;
+        }
+        
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .no-posts {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #c33;
+        }
+        
+  .pin-icon.triangle {
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.pin-icon.triangle::before {
+    content: '📌';
+}
+
+        
+        .all-posts-header {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            color: #000;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .all-posts-header:hover {
+            text-decoration: underline;
+        }
+        
+        .expand-arrow {
+            font-size: 12px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        
+        .expand-arrow.expanded {
+            transform: rotate(90deg);
+        }
+        
+        .all-posts-list {
+            display: none;
+        }
+        
+        .all-posts-list.expanded {
+            display: block;
+        }
+
+        /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 15px;
+                padding: 30px 20px;
+            }
+            
+            .header-img {
+                width: 250px;
+                margin-bottom: 20px;
+            }
+        }
+ 
+    </style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ME0QNDD3XB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ME0QNDD3XB');
+</script>
+<script type="text/javascript">
+  (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+  for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
+  e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^///)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+  mixpanel.init('04b970e30974755f7e909c64f830ef4a', {
+    autocapture: true,
+    record_sessions_percent: 100,
+  })
+
+  const __post = {"title":"Growing Pains","date":"2025-03-13","is_pinned":false};
+  let __maxScroll = 0;
+  const __readStart = Date.now();
+  mixpanel.track('Article Opened', { 'Article Title': __post.title, 'Article Date': __post.date, 'Is Pinned': __post.is_pinned, 'Direct Link': true });
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const pct = Math.round((window.scrollY / docHeight) * 100);
+      if (pct > __maxScroll) __maxScroll = pct;
+    }
+  });
+  window.addEventListener('beforeunload', () => {
+    mixpanel.track('Article Read', {
+      'Article Title': __post.title,
+      'Article Date': __post.date,
+      'Seconds Spent': Math.round((Date.now() - __readStart) / 1000),
+      'Max Scroll Percent': __maxScroll,
+    });
+  });
+</script>
+</head>
+<body>
+<a href="/"><img src="/header.png" alt="Stoopside Scribbles - From porch to page" class="header-img"></a>
+
+<div style="margin-bottom: 30px;">
+    <a href="/" style="color: #666; text-decoration: none;">← All posts</a>
+</div>
+
+<article>
+    <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">Growing Pains</h2>
+    <div style="color: #666; font-size: 14px; margin-bottom: 20px;">March 12, 2025</div>
+    <div style="white-space: pre-wrap; line-height: 1.8;">Now, with March in full bloom, our bodies are shifting, defrosting from our winter forms. We have to adjust to the brightening and unfamiliar light of day...amongst other things. The awakening of the season is a good thing, a lot of the time, but it might be a little unsettling.
+
+Spring time is an uncomfortable season. For me, It tends to be the hardest of the four.
+
+This spring in particular, i am feeling the growing pains. This spring means the end of college. It means saying goodbye to house where i&#39;ve lived with the same roommates since i was 19. It&#39;s a goodbye to my routine life at Fordham-- my stoop sessions, my coffee spots, my Pasta Thursdays at Piattini, and so much more. Recently, at times, this has felt quite heartbreaking. 
+
+Although I know that I am ready for change, this break-up is a tough one. It&#39;s hard to let go of good things, especially when thats what they are, good things. 
+
+&quot;Why make myself uncomfortable when I am content with the life I&#39;m living now?&quot; 
+
+Even though change is hard, it is generally always a good thing. Especially at this age, when there is still so much to see, do, and learn.  
+
+There is a tremendous world out there and it is all yours, forever- copenhagen poem lady. 
+
+ &#39;lean in and learn something from this uneasiness&#39; is a lesson I have written to myself, on this blog, many times over   and am doing my best to remember right now. 
+
+(I talk about this in tomorrow and tomorrow and tomorrow.... Alice omen.... snake shedding skin... the Hands, the Harvest, and the Sky)
+
+Change right now feels slippery and slimy, but I am grounding myself by leaning on the long term meaningful relationships I have with others, who have been there through many different seasons of life with me, already. 
+
+Things are changing for us graudates-- routines and settings, but I know my relationships are stable. Like Jo March says about hers, &quot;steady as a fortress!&quot; (just reread my blog post &#39;good friends are like stars&#39; and it was a nice reminder that friends don&#39;t always have to be near, to be there.) 
+
+Allas, what is that quote? &quot;How lucky am I to have something that makes saying goodbye so hard.&quot; Its true! I feel a bit scared, sure, but mostly I am just overwhelmed with gratitude for the memories, friendships, and community I&#39;ve been able to build for myself here in the Bronx.
+
+Today, I am reminding myself that it is good to be sentimental. 
+
+With this blog post, I am sealing in the mentality tha change is to be embraced! The uncomfortability of spring will be welcomed with open arms this time around.</div>
+</article>
+
+<footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e5e5;">
+    <a href="mailto:ellie@stoopsidescribbles.com" style="color: #bbb; font-size: 13px; text-decoration: none;">ellie@stoopsidescribbles.com</a>
+</footer>
+</body>
+</html>

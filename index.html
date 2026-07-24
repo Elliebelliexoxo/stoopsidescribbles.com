@@ -320,19 +320,30 @@
             const contentDiv = document.getElementById('content');
 
             try {
-                // Fetch posts directly from Supabase
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&published=eq.true&order=is_pinned.desc,date.desc`, {
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                    }
-                });
-                
+                // Fetch posts directly from Supabase, plus the id->slug
+                // manifest (built by scripts/generate-posts.mjs) so links can
+                // point at each post's real, independently-indexable page.
+                const [response, manifestResponse] = await Promise.all([
+                    fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&published=eq.true&order=is_pinned.desc,date.desc`, {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    }),
+                    fetch('/posts/manifest.json').catch(() => null)
+                ]);
+
                 if (!response.ok) {
                     throw new Error('Failed to load content');
                 }
-                
+
                 const posts = await response.json();
+
+                window.postSlugs = {};
+                if (manifestResponse && manifestResponse.ok) {
+                    const manifest = await manifestResponse.json();
+                    manifest.forEach(({ id, slug }) => { window.postSlugs[id] = slug; });
+                }
 
                 // Display posts as simple list
                 if (posts && posts.length > 0) {
@@ -358,7 +369,7 @@ pinnedPosts.forEach((post, index) => {
     const postIndex = sortedPosts.indexOf(post);
     featuredHTML += `
         <li class="post">
-            <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+            <a href="${postHref(post, postIndex)}" onclick="showPost(${postIndex}); return false;">
                 <span class="pin-icon triangle"></span>${escapeHtml(post.title)}
             </a>
         </li>
@@ -371,7 +382,7 @@ pinnedPosts.forEach((post, index) => {
                             const postIndex = sortedPosts.indexOf(newestPost);
                             featuredHTML += `
                                 <li class="post">
-                                    <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                                    <a href="${postHref(newestPost, postIndex)}" onclick="showPost(${postIndex}); return false;">
                                         ${escapeHtml(newestPost.title)} <span style="color: #0066CC; font-size: 12px;">[new]</span>
                                     </a>
                                 </li>
@@ -385,7 +396,7 @@ pinnedPosts.forEach((post, index) => {
                                 const postIndex = sortedPosts.indexOf(post);
                                 return `
                                     <li class="post">
-                                        <a href="#post-${postIndex}" onclick="showPost(${postIndex}); return false;">
+                                        <a href="${postHref(post, postIndex)}" onclick="showPost(${postIndex}); return false;">
                                             ${escapeHtml(post.title)}
                                         </a>
                                     </li>
@@ -445,6 +456,11 @@ pinnedPosts.forEach((post, index) => {
             `;
         }
         
+        function postHref(post, index) {
+            const slug = window.postSlugs && window.postSlugs[post.id];
+            return slug ? `/posts/${slug}/` : `#post-${index}`;
+        }
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;

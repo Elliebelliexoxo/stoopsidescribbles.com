@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 0 — Stoopside Scribbles</title>
+
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/512/16077/16077310.png" type="image/png">
+
+    <meta name="description" content="I had two Oreos for breakfast and, in a delirious accident, smeared avocado across my lap (staining my jeans ofccc) There is a delay on the plane from Den…">
+    <meta name="author" content="Stoopside Scribbles">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stoopsidescribbles.com/posts/day-0/">
+    <meta property="og:title" content="Day 0">
+    <meta property="og:description" content="I had two Oreos for breakfast and, in a delirious accident, smeared avocado across my lap (staining my jeans ofccc) There is a delay on the plane from Den…">
+    <meta property="og:image" content="https://stoopsidescribbles.com/header.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stoopsidescribbles.com/posts/day-0/">
+    <meta property="twitter:title" content="Day 0">
+    <meta property="twitter:description" content="I had two Oreos for breakfast and, in a delirious accident, smeared avocado across my lap (staining my jeans ofccc) There is a delay on the plane from Den…">
+    <meta property="twitter:image" content="https://stoopsidescribbles.com/header.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header-img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+            display: block;
+        }
+                /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+
+.posts {
+            list-style-type: none; 
+            padding: 0;
+        }
+        
+        .post {
+            list-style-type: none;
+            margin-bottom: 8px;
+        }
+        .post a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .post a:hover {
+            text-decoration: underline;
+        }
+        
+        .post a:visited {
+            color: #606060;
+        }
+        
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .no-posts {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #c33;
+        }
+        
+  .pin-icon.triangle {
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.pin-icon.triangle::before {
+    content: '📌';
+}
+
+        
+        .all-posts-header {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            color: #000;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .all-posts-header:hover {
+            text-decoration: underline;
+        }
+        
+        .expand-arrow {
+            font-size: 12px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        
+        .expand-arrow.expanded {
+            transform: rotate(90deg);
+        }
+        
+        .all-posts-list {
+            display: none;
+        }
+        
+        .all-posts-list.expanded {
+            display: block;
+        }
+
+        /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 15px;
+                padding: 30px 20px;
+            }
+            
+            .header-img {
+                width: 250px;
+                margin-bottom: 20px;
+            }
+        }
+ 
+    </style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ME0QNDD3XB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ME0QNDD3XB');
+</script>
+<script type="text/javascript">
+  (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+  for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
+  e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^///)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+  mixpanel.init('04b970e30974755f7e909c64f830ef4a', {
+    autocapture: true,
+    record_sessions_percent: 100,
+  })
+
+  const __post = {"title":"Day 0","date":"2025-05-19","is_pinned":false};
+  let __maxScroll = 0;
+  const __readStart = Date.now();
+  mixpanel.track('Article Opened', { 'Article Title': __post.title, 'Article Date': __post.date, 'Is Pinned': __post.is_pinned, 'Direct Link': true });
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const pct = Math.round((window.scrollY / docHeight) * 100);
+      if (pct > __maxScroll) __maxScroll = pct;
+    }
+  });
+  window.addEventListener('beforeunload', () => {
+    mixpanel.track('Article Read', {
+      'Article Title': __post.title,
+      'Article Date': __post.date,
+      'Seconds Spent': Math.round((Date.now() - __readStart) / 1000),
+      'Max Scroll Percent': __maxScroll,
+    });
+  });
+</script>
+</head>
+<body>
+<a href="/"><img src="/header.png" alt="Stoopside Scribbles - From porch to page" class="header-img"></a>
+
+<div style="margin-bottom: 30px;">
+    <a href="/" style="color: #666; text-decoration: none;">← All posts</a>
+</div>
+
+<article>
+    <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">Day 0</h2>
+    <div style="color: #666; font-size: 14px; margin-bottom: 20px;">May 18, 2025</div>
+    <div style="white-space: pre-wrap; line-height: 1.8;">I had two Oreos for breakfast and, in a delirious accident, smeared avocado across my lap (staining my jeans ofccc) There is a delay on the plane from Denver to Bozeman and I happen to do some of my best writing in airport computer charging tables so I figured now is the most probable time for me to begin my documentation of whatever it is I end up writing this new blog post about. Theres a lot of places to start. 
+
+A) I  recount my experiences over the last several months. So much to process, to reflect upon, so many important memories feelings and milestones that deserve a proper moment of remembrance.
+
+B) I  recount my first day of pure adulthood in detail.  Journal entry one on day one of Yellowstone, of post grad, of long distance, of a new life!
+
+both or neither of those things, idk. 
+
+	I started my morning bright and early at a smooth 4:58am.  A rough but enough (debatable)  sleep (5 hours of sleep lathered in a big  coat of anticipation ). 
+
+What a hell yesterday was. Goodbye to the friends, the roommates, the neighbors, the boyfriend,  the family, and everyone in between. Goodbye to my school and college life and my desk and my beside table.  So much emotion, deep wells of it, with each person and thing. It felt beautiful but never ending and overwhelming. The anxiety of it all ate me alive and then threw me back up.  
+
+Prepping for this change put me in a frozen state of churning fear. Scary, jarring, feelings press against my mind! Not a good feeling, but it&#39;s life, and change is good, and it is important to remember that. 
+
+	It takes effort and strong attention to pull myself out of the fear mind and back into me, into the joy of it all. The freedom of myself, of being alone. If not now, then when? It is the time! 
+
+There are many ways to combat fear, this (my blog) being one of them.  I think that&#39;s a big reason I am returning here today-- to turn the blade back on the worry girl by suffocating her with me doing all the fun liberating hobbies that make me happy. 
+
+I&#39;ve wanted to come back on here to write for some time. My hiatus was unintentional and lasted far longer than I would&#39;ve ever anticipated. To be honest, I&#39;ve been entirely caught up in a very fast, very potent, reality for the last few months. 
+
+A combination of things this semester challenged my mental fortitude and took a hefty deal of energy.  Now, sitting here with my avocado stained pants, a sniffle, and a strong desire to fall asleep for the next 20 hours, I am feeling immense relief that the things  I so desperately needed to happen, have now happened (kind of there are still a few things that very much need to happen). 
+
+Short list of things that need to happen in order of imminence. 
+
+Actually get there. I am in Colorado writing this.
+
+Car battery. Get battery in Bozeman. Bring it to Yellowstone.  Put in car and make it work. 
+
+Start job. Check in, move in, get set up for orientation.  Memorize all the stuff. 
+
+Fix health. Broad statement, broad categories of things to improve. Will check in on this in updates later. 
+
+Make a friend.
+
+Turn 22! Weeee
+
+
+	Now, although these things all need to happen over the next few days, I still feel like I am coming over a big hump of it all just by being out of New York City.  I am going to take a deep breath with each of the things I list out as I write them. Each item was a battle. 
+
+I was able to figure out packing and get it all squared away with much help. (Special thanks to Dad, roomies, Justin and Eileen Finch, Chris, Mom, and Logan)
+
+I persisted through all the graduation coordination and events. Celebrating is fun, but it can be taxing. I was worried about mindfulness and did not want to overexert myself in the festivities. It was so fun in a lot of ways, but incredibly draining and not always the most enjoyable. there is some pressure for senior week to be the best of the best week but change is not always simple and easy and that is okay. 
+
+I completed Really Mag stuff! New issue, new merch (lighters!) new level of professionalism, new venue for the launch party. A big accomplishment for us all because it was a big time commitment. I am proud of grace, and jaiden, and campbell, and eva, and everyone else and also myself. 
+
+I  fought to end with all A&#39;s! Effort and energy but lots of fun and tons of fantastic classes. I learned a lot this year. Academically the best year of learning. 
+
+
+There are many other things that have been going on and I am looking forward to thinking and then typing them all out. But for now, I am content on the degree of I&#39;ve done today. The plane is boarding soon, my laptop is close to dead, and my eyes are fighting to stay open. I have missed you, my blog! I am happy to be back, to write more, to reflect more, to share new ideas and thoughts and lessons and plans.
+
+This is going to be a great chapter.</div>
+</article>
+
+<footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e5e5;">
+    <a href="mailto:ellie@stoopsidescribbles.com" style="color: #bbb; font-size: 13px; text-decoration: none;">ellie@stoopsidescribbles.com</a>
+</footer>
+</body>
+</html>
