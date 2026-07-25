@@ -495,7 +495,11 @@ pinnedPosts.forEach((post, index) => {
         }
         
         function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            // dateString is a plain YYYY-MM-DD calendar date with no time
+            // component, so it must be formatted in UTC - otherwise it
+            // parses as UTC midnight and can render as the previous or next
+            // day depending on the viewer's local timezone.
+            const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
             return new Date(dateString).toLocaleDateString(undefined, options);
         }
         

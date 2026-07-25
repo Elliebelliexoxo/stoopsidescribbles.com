@@ -53,8 +53,12 @@ function excerptOf(content, max = 155) {
 }
 
 function formatDate(dateString) {
+  // dateString is a plain YYYY-MM-DD calendar date with no time component,
+  // so it must be formatted in UTC - otherwise it parses as UTC midnight and
+  // renders as a different day depending on which timezone this script runs
+  // in (a laptop vs. the UTC GitHub Actions runner).
   return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
   });
 }
 
