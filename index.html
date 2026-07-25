@@ -129,6 +129,7 @@
             font-size: 12px;
             transition: transform 0.2s;
             display: inline-block;
+            text-decoration: none;
         }
         
         .expand-arrow.expanded {
@@ -433,16 +434,22 @@ pinnedPosts.forEach((post, index) => {
             }
         }
         
-        function showPost(index) {
+        function showPost(index, options = {}) {
             const post = window.posts[index];
             if (!post) return;
 
             stoopside.openArticle(post, index);
+            renderPostView(post);
 
-            // Create a simple post view
+            if (options.pushState !== false) {
+                history.pushState({ type: 'post', index }, '', postHref(post, index));
+            }
+        }
+
+        function renderPostView(post) {
             document.getElementById('content').innerHTML = `
                 <div style="margin-bottom: 30px;">
-                    <a href="#" onclick="stoopside.closeArticle(); loadContent(); return false;" style="color: #666; text-decoration: none;">← Back</a>
+                    <a href="/" onclick="goToList(); return false;" style="color: #666; text-decoration: none;">← Back</a>
                 </div>
                 <article>
                     <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">
@@ -455,7 +462,27 @@ pinnedPosts.forEach((post, index) => {
                 </article>
             `;
         }
-        
+
+        function goToList(options = {}) {
+            stoopside.closeArticle();
+            loadContent();
+            if (options.pushState !== false) {
+                history.pushState({ type: 'list' }, '', '/');
+            }
+        }
+
+        // Keep the address bar in sync with in-place SPA navigation so
+        // back/forward and copying the current link both work.
+        window.addEventListener('popstate', (event) => {
+            const state = event.state;
+            if (state && state.type === 'post' && window.posts && window.posts[state.index]) {
+                stoopside.openArticle(window.posts[state.index], state.index);
+                renderPostView(window.posts[state.index]);
+            } else {
+                goToList({ pushState: false });
+            }
+        });
+
         function postHref(post, index) {
             const slug = window.postSlugs && window.postSlugs[post.id];
             return slug ? `/posts/${slug}/` : `#post-${index}`;
