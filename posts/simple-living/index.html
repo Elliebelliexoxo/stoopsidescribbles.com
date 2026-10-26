@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple living — Stoopside Scribbles</title>
+
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/512/16077/16077310.png" type="image/png">
+
+    <meta name="description" content="We are living in an overly saturated world that makes it easy to observe, but arduous at times to participate in. Its easy to save 100 recipes, happy hour…">
+    <meta name="author" content="Stoopside Scribbles">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stoopsidescribbles.com/posts/simple-living/">
+    <meta property="og:title" content="Simple living">
+    <meta property="og:description" content="We are living in an overly saturated world that makes it easy to observe, but arduous at times to participate in. Its easy to save 100 recipes, happy hour…">
+    <meta property="og:image" content="https://stoopsidescribbles.com/header.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stoopsidescribbles.com/posts/simple-living/">
+    <meta property="twitter:title" content="Simple living">
+    <meta property="twitter:description" content="We are living in an overly saturated world that makes it easy to observe, but arduous at times to participate in. Its easy to save 100 recipes, happy hour…">
+    <meta property="twitter:image" content="https://stoopsidescribbles.com/header.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header-img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+            display: block;
+        }
+                /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+
+.posts {
+            list-style-type: none; 
+            padding: 0;
+        }
+        
+        .post {
+            list-style-type: none;
+            margin-bottom: 8px;
+        }
+        .post a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .post a:hover {
+            text-decoration: underline;
+        }
+        
+        .post a:visited {
+            color: #606060;
+        }
+        
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .no-posts {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #c33;
+        }
+        
+  .pin-icon.triangle {
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.pin-icon.triangle::before {
+    content: '📌';
+}
+
+        
+        .all-posts-header {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            color: #000;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .all-posts-header:hover {
+            text-decoration: underline;
+        }
+        
+        .expand-arrow {
+            font-size: 12px;
+            transition: transform 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .expand-arrow.expanded {
+            transform: rotate(90deg);
+        }
+        
+        .all-posts-list {
+            display: none;
+        }
+        
+        .all-posts-list.expanded {
+            display: block;
+        }
+
+        /* Ensure no bullets on any list items */
+        ul.posts, ul.posts li, .posts, .posts li, .post {
+            list-style: none !important;
+            list-style-type: none !important;
+            list-style-position: inside !important;
+            padding-left: 0 !important;
+        }
+
+        ul.posts::before, .posts li::before, .post::before {
+            content: none !important;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 15px;
+                padding: 30px 20px;
+            }
+            
+            .header-img {
+                width: 250px;
+                margin-bottom: 20px;
+            }
+        }
+ 
+    </style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ME0QNDD3XB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ME0QNDD3XB');
+</script>
+<script type="text/javascript">
+  (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+  for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
+  e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^///)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+  mixpanel.init('04b970e30974755f7e909c64f830ef4a', {
+    autocapture: true,
+    record_sessions_percent: 100,
+  })
+
+  const __post = {"title":"Simple living","date":"2026-10-26","is_pinned":false};
+  let __maxScroll = 0;
+  const __readStart = Date.now();
+  mixpanel.track('Article Opened', { 'Article Title': __post.title, 'Article Date': __post.date, 'Is Pinned': __post.is_pinned, 'Direct Link': true });
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const pct = Math.round((window.scrollY / docHeight) * 100);
+      if (pct > __maxScroll) __maxScroll = pct;
+    }
+  });
+  window.addEventListener('beforeunload', () => {
+    mixpanel.track('Article Read', {
+      'Article Title': __post.title,
+      'Article Date': __post.date,
+      'Seconds Spent': Math.round((Date.now() - __readStart) / 1000),
+      'Max Scroll Percent': __maxScroll,
+    });
+  });
+</script>
+</head>
+<body>
+<a href="/"><img src="/header.png" alt="Stoopside Scribbles - From porch to page" class="header-img"></a>
+
+<div style="margin-bottom: 30px;">
+    <a href="/" style="color: #666; text-decoration: none;">← All posts</a>
+</div>
+
+<article>
+    <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 10px;">Simple living</h2>
+    <div style="color: #666; font-size: 14px; margin-bottom: 20px;">October 26, 2026</div>
+    <div style="white-space: pre-wrap; line-height: 1.8;">We are living in an overly saturated world that makes it easy to observe, but arduous at times to participate in. Its easy to save 100 recipes, happy hours, skin care products, journal prompts, workout routines. It&#39;s hard knowing which to follow and when, especially as the &quot;next best thing&quot; keeps rolling in. 
+
+It is no longer news that everyone has a voice, a platform to share it, and a chance to make money by Influencing others. The ecosystem of social media has mutated into a place of pure persuasion meant to draw you in through secrets, hacks, and trends. It is overwhelming living in this non-monolithic consumer base, where the self is split and fragmented into niches. 
+We are all so different, and our algorithms represent this, yet we all experience this flood of information collectively. I have come on here today to talk about my belief that the desire for simplicity is what will unite us. 
+
+Not simplicity in a minimalism way, or a brutalist aesthetic, but in the etiquette we conduct when consuming media. Here are some examples, take it or leave it. 
+
+1. Wikipedia for useful knowledge. (https://www.wikipedia.org/)
+
+The site is easy, free, and low stimulation. They also have an app. 
+
+&quot;Wikipedia is still the internet we were promised—created by people, not by machines. It&#39;s not perfect, but it&#39;s not here to push a point of view. It&#39;s run by a nonprofit, not a giant technology company or a billionaire.&quot; 
+
+2 (a). Organize your music. 
+
+Spotify lets you folder your playlists. I have a folder for every year with folders for every month of the year within those. I also have a playlist folder for cooking, holidays, and specific locations. Filing my songs has been an easy way for me to simplify. 
+
+2 (b). Pick one composer. 
+
+Choose one primary artist to listen to for the month. Really spend time on their discography and sound. This can be applied to influencers too (Ex. pick one food influencer and only do their receipts for the month of November)
+
+3. Cut out the paid promotions yourself.
+
+Switch your Instagram to the Following tab so you are only seeing the accounts you want to see. 
+
+4. One streaming platform, one genre a month. 
+
+Streaming sites give us so much choice. Either go into TV time with a set movie in mind, or only choose a movie/show thats in the select genre you&#39;ve decided on for the month.
+
+5. No haptics or notifications
+
+This one might be controversial with my friends and family but I&#39;ve found a lot of peacefulness in having my phone on permanent dnd haha
+
+Alls this to say, I hope we can find ways to intentionally reduce all the background noises of life and really slow down this winter. May we find ways to be present, calm, and simple.</div>
+</article>
+
+<footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e5e5;">
+    <a href="mailto:ellie@stoopsidescribbles.com" style="color: #bbb; font-size: 13px; text-decoration: none;">ellie@stoopsidescribbles.com</a>
+</footer>
+</body>
+</html>
